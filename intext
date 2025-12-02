@@ -6,12 +6,12 @@
     name="viewport"
     content="width=device-width, initial-scale=1.0"
   />
-  <title>Global Charity Community Hub | Education, Healthcare & Climate Action</title>
+  <title>Global Charity Hub | Education, Healthcare & Climate Action</title>
 
   <!-- SEO -->
   <meta
     name="description"
-    content="Global Charity Community Hub connects donors, volunteers, and communities to support education, healthcare, food security, and climate resilience across the world."
+    content="Global Charity Hub connects donors, volunteers, and communities to support education, healthcare, food security, and climate resilience across the world."
   />
 
   <!-- Favicon -->
@@ -979,7 +979,7 @@
         <div class="hero-content" data-aos="fade-up">
           <div class="hero-badge">
             <i class="fas fa-globe-europe" aria-hidden="true"></i>
-            <span data-i18n="hero_badge">Global Charity Community Hub</span>
+            <span data-i18n="hero_badge">Global Charity Hub</span>
           </div>
 
           <h1 id="hero-title" data-i18n="hero_title">
@@ -1480,7 +1480,7 @@
 
     <!-- FOOTER BOTTOM BAR -->
     <div class="footer-bottom" style="border-top:1px solid #4d3323; padding-top:12px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; font-size:0.85rem; color:#c6a48c;">
-      <span>© 2025 Global Charity Community Hub. All rights reserved.</span>
+      <span>© 2025 Global Charity Hub. All rights reserved.</span>
 
       <div class="social-icons">
         <a href="#"><i class="fab fa-facebook-f"></i></a>
@@ -1534,7 +1534,7 @@
         nav_about: "About",
         nav_programs: "Programs",
         nav_contact: "Contact",
-        hero_badge: "Global Charity Community Hub",
+        hero_badge: "Global Charity Hub",
         hero_title: "Join us in building a fairer, kinder world.",
         hero_subtitle:
           "We connect donors, volunteers, and communities to deliver education, food, healthcare, and climate action to those who need it most.",
@@ -1568,7 +1568,7 @@
         nav_about: "Quiénes somos",
         nav_programs: "Programas",
         nav_contact: "Contacto",
-        hero_badge: "Centro comunitario global de caridad",
+        hero_badge: "Centro global de caridad",
         hero_title: "Únete a nosotros para construir un mundo más justo y amable.",
         hero_subtitle:
           "Conectamos donantes, voluntarios y comunidades para ofrecer educación, alimentos, atención sanitaria y acción climática a quienes más lo necesitan."
@@ -1578,7 +1578,7 @@
         nav_about: "À propos",
         nav_programs: "Programmes",
         nav_contact: "Contact",
-        hero_badge: "Centre communautaire caritatif mondial",
+        hero_badge: "Centre caritatif mondial",
         hero_title: "Rejoignez-nous pour construire un monde plus juste et bienveillant.",
         hero_subtitle:
           "Nous relions donateurs, bénévoles et communautés pour apporter éducation, nourriture, soins de santé et action climatique à ceux qui en ont le plus besoin."
@@ -1618,7 +1618,7 @@
         nav_about: "हमारे बारे में",
         nav_programs: "कार्यक्रम",
         nav_contact: "संपर्क",
-        hero_badge: "वैश्विक चैरिटी कम्युनिटी हब",
+        hero_badge: "वैश्विक चैरिटी हब",
         hero_title: "हमारे साथ मिलकर एक न्यायपूर्ण और दयालु दुनिया बनाएं।",
         hero_subtitle:
           "हम दानदाताओं, स्वयंसेवकों और समुदायों को जोड़ते हैं ताकि शिक्षा, भोजन, स्वास्थ्य सेवा और जलवायु कार्रवाई ज़रूरतमंद लोगों तक पहुँच सके।"

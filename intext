@@ -1,0 +1,1667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+  <title>Global Charity Community Hub | Education, Healthcare & Climate Action</title>
+
+  <!-- SEO -->
+  <meta
+    name="description"
+    content="Global Charity Community Hub connects donors, volunteers, and communities to support education, healthcare, food security, and climate resilience across the world."
+  />
+
+  <!-- Favicon -->
+  <link
+    rel="icon"
+    type="image/png"
+    href="https://cdn-icons-png.flaticon.com/512/833/833472.png"
+  />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Font Awesome -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+
+  <!-- AOS (scroll animations) -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/aos@2.3.1/dist/aos.css"
+  />
+
+  <style>
+    /* ---------- RESET & BASE ---------- */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.6;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font-family: inherit;
+    }
+
+    /* ---------- THEME VARIABLES ---------- */
+    :root {
+      --primary-color: #e4684a;
+      --accent-color: #f6b76c;
+      --bg-color: #fdf7f2;
+      --surface-color: #fff7ef;
+      --text-color: #2b2623;
+      --muted-color: #7a6f67;
+      --shadow-soft: 0 18px 40px rgba(115, 81, 59, 0.18);
+      --focus-ring: 0 0 0 3px rgba(246, 183, 108, 0.9);
+      --card-radius: 18px;
+    }
+
+    body.dark {
+      --bg-color: #171212;
+      --surface-color: #261b16;
+      --text-color: #f4f4f4;
+      --muted-color: #b29a8e;
+      --primary-color: #f97362;
+      --accent-color: #facc79;
+      --focus-ring: 0 0 0 3px rgba(249, 200, 140, 0.9);
+    }
+
+    /* ---------- ACCESSIBILITY: SKIP LINK ---------- */
+    .skip-link {
+      position: absolute;
+      left: -999px;
+      top: 8px;
+      background: #111827;
+      color: #f9fafb;
+      padding: 8px 12px;
+      border-radius: 999px;
+      z-index: 1100;
+    }
+
+    .skip-link:focus {
+      left: 12px;
+      outline: none;
+      box-shadow: var(--focus-ring);
+    }
+
+    /* ---------- LAYOUT ---------- */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .section {
+      padding: 80px 20px;
+    }
+
+    .section h2 {
+      text-align: center;
+      font-size: 2.1rem;
+      margin-bottom: 10px;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      max-width: 680px;
+      margin: 0.5rem auto 3rem;
+      color: var(--muted-color);
+      font-size: 0.98rem;
+    }
+
+    /* ---------- HEADER & NAV ---------- */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(253, 247, 242, 0.95);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(210, 180, 160, 0.6);
+    }
+
+    body.dark header {
+      background: rgba(23, 18, 18, 0.95);
+      border-bottom-color: rgba(92, 64, 50, 0.8);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 20px;
+      gap: 16px;
+      position: relative;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.3rem;
+      font-weight: 700;
+    }
+
+    .logo img {
+      border-radius: 50%;
+    }
+
+    nav {
+      display: flex;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 24px;
+      font-size: 0.98rem;
+    }
+
+    nav a {
+      color: var(--muted-color);
+      font-weight: 500;
+      position: relative;
+      padding-bottom: 4px;
+      transition: color 0.2s ease;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+      transition: width 0.25s ease;
+    }
+
+    nav a:hover {
+      color: var(--text-color);
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    nav a:focus-visible {
+      outline: none;
+      box-shadow: var(--focus-ring);
+      border-radius: 999px;
+      padding-inline: 6px;
+    }
+
+    .header-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .language-dropdown {
+      padding: 6px 10px;
+      border-radius: 8px;
+      border: 1px solid #d1b7a3;
+      background: #ffffff;
+      font-size: 0.9rem;
+      cursor: pointer;
+      color: var(--text-color);
+    }
+
+    body.dark .language-dropdown {
+      background: #261b16;
+      color: #f4f4f4;
+      border-color: #4b3326;
+    }
+
+    .language-dropdown:focus-visible {
+      outline: none;
+      box-shadow: var(--focus-ring);
+    }
+
+    .mode-toggle {
+      border: none;
+      border-radius: 999px;
+      background: rgba(210, 180, 160, 0.6);
+      color: var(--text-color);
+      width: 36px;
+      height: 36px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.15s ease;
+    }
+
+    .mode-toggle:hover {
+      background: rgba(210, 180, 160, 0.9);
+      transform: translateY(-1px);
+    }
+
+    .mode-toggle:focus-visible {
+      outline: none;
+      box-shadow: var(--focus-ring);
+    }
+
+    .hamburger {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      flex-direction: column;
+      gap: 4px;
+      padding: 4px;
+    }
+
+    .hamburger span {
+      width: 20px;
+      height: 2px;
+      background: var(--text-color);
+      border-radius: 999px;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .hamburger.active span:nth-child(1) {
+      transform: translateY(6px) rotate(45deg);
+    }
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.active span:nth-child(3) {
+      transform: translateY(-6px) rotate(-45deg);
+    }
+
+    .hamburger:focus-visible {
+      outline: none;
+      box-shadow: var(--focus-ring);
+      border-radius: 999px;
+    }
+
+    /* ---------- HERO ---------- */
+    .hero {
+      position: relative;
+      min-height: 88vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
+      
+      background:
+        linear-gradient(
+          rgba(90,0,31,0.80),
+          rgba(196,103,117,0.80)
+        ),
+        url("https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&w=1600&q=80")
+        center/cover no-repeat;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.16), transparent 55%);
+      opacity: 0.7;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      padding: 90px 20px 70px;
+    }
+
+    .hero-content {
+      max-width: 650px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.3rem, 4vw, 3.1rem);
+      margin-bottom: 10px;
+      letter-spacing: -0.04em;
+    }
+
+    .hero-title { font-size: 3rem; margin-bottom: 16px; }
+    .hero-subtitle { font-size: 1.1rem; margin-bottom: 28px; }
+    
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #5A001F, #C46775);
+      color: white;
+      padding: 14px 32px;
+      border-radius: 50px;
+      border: none;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 10px 33px rgba(88,17,31,0.35);
+      transition: 0.2s;
+    }
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 45px rgba(85, 43, 21, 0.48);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid #fff;
+      color: #fff;
+      padding: 14px 32px;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .btn-secondary:hover { background: rgba(255,255,255,0.2); }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px; /* increased from 16px */
+      align-items: center;
+      justify-content: center; /* ensures perfect centering under text */
+      margin-bottom: 30px; /* more breathing room */
+    }
+
+   .hero-meta-item {
+     display: flex;
+     align-items: center;
+     gap: 10px; /* increased from 8px for cleaner icon spacing */
+     font-size: 1rem; /* bumped slightly for clarity */
+     line-height: 1.4; /* adds vertical space inside lines */
+    }
+
+    /* ---------- GLASS CARD ---------- */
+    .glass-card {
+      background: rgba(255, 247, 239, 0.96);
+      border-radius: var(--card-radius);
+      padding: 22px 20px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(215, 184, 160, 0.8);
+      backdrop-filter: blur(10px);
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    body.dark .glass-card {
+      background: radial-gradient(circle at top left, rgba(110, 68, 48, 0.6), rgba(26, 20, 17, 0.98));
+      border-color: rgba(102, 72, 53, 0.9);
+    }
+
+    .glass-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 22px 55px rgba(78, 47, 28, 0.4);
+    }
+
+    /* ---------- ABOUT ---------- */
+    .about-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 40px;
+      align-items: center;
+    }
+
+    .about-text p {
+      color: var(--muted-color);
+      font-size: 0.98rem;
+      margin-bottom: 18px;
+    }
+
+    .about-image-wrapper {
+      position: relative;
+    }
+
+    .about-main-img {
+      border-radius: 24px;
+      height: 320px;
+      object-fit: cover;
+    }
+
+    .about-tag {
+      position: absolute;
+      bottom: 18px;
+      left: 18px;
+      background: rgba(78, 47, 28, 0.92);
+      color: #fef3e7;
+      border-radius: 999px;
+      padding: 8px 16px;
+      font-size: 0.8rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* ---------- PROGRAMS (NO IMAGES) ---------- */
+    .programs-section {
+      padding: 80px 20px;
+      background: #f9f3ef;
+    }
+
+    body.dark .programs-section {
+      background: #201815;
+    }
+
+    .programs-section .section-title {
+      font-size: 2.3rem;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .programs-section .section-subtitle {
+      max-width: 650px;
+      margin: 0 auto 40px;
+      text-align: center;
+      color: var(--muted-color);
+    }
+
+    /* SDG inline SVG badges */
+    .sdg-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      margin-bottom: 45px;
+    }
+
+    .sdg-card {
+      background: var(--surface-color);
+      border-radius: 16px;
+      padding: 12px 16px 14px;
+      min-width: 140px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .sdg-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.16);
+    }
+
+    .sdg-icon {
+      width: 52px;
+      height: 52px;
+      margin-bottom: 8px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.6);
+    }
+
+    .sdg-card span {
+      font-size: 0.85rem;
+      color: var(--muted-color);
+    }
+
+    .sdg-4 svg { color: #c2410c; }
+    .sdg-3 svg { color: #15803d; }
+    .sdg-2 svg { color: #b45309; }
+    .sdg-13 svg { color: #047857; }
+
+    /* simple SVG animations */
+    @keyframes pulse {
+      0%,100% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+    }
+
+    @keyframes float {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-3px); }
+    }
+
+    .svg-pulse {
+      animation: pulse 2.1s ease-in-out infinite;
+      transform-origin: center;
+    }
+
+    .svg-float {
+      animation: float 2.4s ease-in-out infinite;
+      transform-origin: center;
+    }
+
+    /* Program cards (icon-only) */
+    .program-card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px;
+    }
+
+    .program-card {
+      background: #ffffff;
+      border-radius: var(--card-radius);
+      padding: 22px 20px 24px;
+      box-shadow: 0 3px 15px rgba(0, 0, 0, 0.12);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+
+    body.dark .program-card {
+      background: #2a2220;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.45);
+    }
+
+    .program-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+    }
+
+    .program-icon-wrap {
+      width: 62px;
+      height: 62px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.9);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 10px;
+    }
+
+    body.dark .program-icon-wrap {
+      background: rgba(23, 16, 14, 0.95);
+    }
+
+    .program-card h3 {
+      font-size: 1.18rem;
+      margin-bottom: 8px;
+    }
+
+    .program-card p {
+      color: var(--muted-color);
+      font-size: 0.96rem;
+    }
+
+    .icon-education svg { color: #c2410c; }
+    .icon-health svg { color: #15803d; }
+    .icon-food svg { color: #b45309; }
+    .icon-climate svg { color: #0f766e; }
+
+    /* Hero / About fade-up */
+    [data-aos] {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    [data-aos].aos-animate {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ---------- CONTACT (simple) ---------- */
+    .contact-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+      gap: 30px;
+    }
+
+    .contact-info {
+      font-size: 0.95rem;
+      color: var(--muted-color);
+    }
+
+    .contact-info p {
+      margin-bottom: 10px;
+    }
+
+    .contact-info strong {
+      color: var(--text-color);
+    }
+
+    .contact-form {
+     border-radius: var(--border-radius-lg);
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 12px 14px;
+      margin: 6px 0 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(215, 184, 160, 0.9);
+      background: transparent;
+      font-size: 0.92rem;
+      color: var(--text-color);
+      outline: none;
+    }
+
+    .contact-form textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .contact-form input::placeholder,
+    .contact-form textarea::placeholder {
+      color: rgba(168, 139, 120, 0.95);
+    }
+
+    .contact-form input:focus-visible,
+    .contact-form textarea:focus-visible {
+    }
+
+    /* ---------- MAP ---------- */
+    .map-section iframe {
+      border: 0;
+      width: 100%;
+      height: 340px;
+      border-radius: var(--card-radius);
+      box-shadow: var(--shadow-soft);
+    }
+
+   /* ---------- FOOTER ---------- */
+    footer {
+      background: #2b1c15;
+      color: #f4e7dc;
+      padding: 40px 20px 18px;
+      margin-top: 40px;
+    }
+
+    .footer-grid {
+      max-width: 1200px;
+      margin: 0 auto 24px;
+      display: grid;
+      grid-template-columns: 2fr repeat(3, minmax(0, 1fr));
+      gap: 26px;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .footer-logo img {
+      width: 32px;
+      border-radius: 50%;
+    }
+
+    .footer-desc {
+      font-size: 0.9rem;
+      color: #e2c9b8;
+      max-width: 320px;
+    }
+
+    .footer-heading {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .footer-links {
+      list-style: none;
+      font-size: 0.9rem;
+      color: #e2c9b8;
+    }
+
+    .footer-links li + li {
+      margin-top: 4px;
+    }
+
+    .footer-links a {
+      color: inherit;
+      transition: color 0.2s ease;
+    }
+
+    .footer-links a:hover {
+      color: #ffffff;
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .newsletter-input {
+      flex: 1;
+      border-radius: 999px;
+      border: 1px solid #8b5a3d;
+      background: transparent;
+      padding: 8px 12px;
+      font-size: 0.9rem;
+      color: #f4e7dc;
+      outline: none;
+    }
+
+    .newsletter-input::placeholder {
+      color: #c6a48c;
+    }
+
+    .newsletter-input:focus-visible {
+      outline: none;
+      box-shadow: var(--focus-ring);
+    }
+
+    .newsletter-btn {
+      border-radius: 999px;
+      border: none;
+      padding: 8px 14px;
+      font-size: 0.9rem;
+      background: #f6b76c;
+      color: #2b1c15;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.2s ease, transform 0.15s ease;
+    }
+
+    .newsletter-btn:hover {
+      background: #f9c98c;
+      transform: translateY(-1px);
+    }
+
+    .newsletter-btn:focus-visible {
+      outline: none;
+      box-shadow: var(--focus-ring);
+    }
+
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 0 auto;
+      border-top: 1px solid #4d3323;
+      padding-top: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+      color: #c6a48c;
+    }
+
+    .social-icons a {
+      color: #e2c9b8;
+      margin-left: 10px;
+      font-size: 1rem;
+      transition: color 0.2s ease, transform 0.15s ease;
+    }
+
+    .social-icons a:hover {
+      color: #ffffff;
+      transform: translateY(-1px);
+    }
+
+    .social-icons a:focus-visible {
+      outline: none;
+      box-shadow: var(--focus-ring);
+      border-radius: 999px;
+    }
+
+    /* ---------- ANIMATIONS (ON SCROLL) ---------- */
+    .fade-section {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .fade-section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 1024px) {
+      .about-grid,
+      .contact-layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .header-inner {
+        padding: 10px 10px;
+      }
+
+      nav {
+        position: absolute;
+        top: 58px;
+        right: 16px;
+        background: var(--surface-color);
+        border-radius: 18px;
+        box-shadow: 0 22px 60px rgba(78, 47, 28, 0.45);
+        padding: 14px 16px;
+        display: none;
+      }
+
+      nav.open {
+        display: block;
+      }
+
+      nav ul {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .hero-inner {
+        position: relative;
+        z-index: 1;
+        padding: 90px 20px 70px;
+        display: flex;
+        justify-content: center;
+      }
+
+      .hero-content {
+        max-width: 650px;
+        text-align: center;
+        margin: 0 auto;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: 6px;
+        text-align: center;
+      }
+    }
+  </style>
+
+  <!-- sr-only utility -->
+  <style>
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- HEADER -->
+  <header>
+    <div class="container header-inner">
+      <div class="logo">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/833/833472.png"
+          alt="Global Charity Hub logo"
+          width="40"
+          height="40"
+          loading="lazy"
+        />
+        <span>Global Charity Hub</span>
+      </div>
+
+      <button
+        class="hamburger"
+        id="menu-toggle"
+        aria-label="Toggle navigation"
+        aria-expanded="false"
+        aria-controls="main-nav"
+      >
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav id="main-nav" aria-label="Main navigation">
+        <ul>
+          <li><a href="#home" data-i18n="nav_home">Home</a></li>
+          <li><a href="#about" data-i18n="nav_about">About</a></li>
+          <li><a href="#programs" data-i18n="nav_programs">Programs</a></li>
+          <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-controls">
+        <label for="language-dropdown" class="sr-only">Language</label>
+        <select id="language-dropdown" class="language-dropdown" aria-label="Select language">
+          <option value="en">English</option>
+          <option value="es">Español</option>
+          <option value="fr">Français</option>
+          <option value="de">Deutsch</option>
+          <option value="ar">العربية</option>
+          <option value="zh">中文</option>
+          <option value="hi">हिंदी</option>
+        </select>
+        <button
+          class="mode-toggle"
+          id="mode-toggle"
+          aria-label="Toggle dark mode"
+          type="button"
+        >
+          <i class="fas fa-moon" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main id="main-content">
+    <!-- HERO -->
+    <section id="home" class="hero" aria-labelledby="hero-title">
+      <div class="container hero-inner">
+        <div class="hero-content" data-aos="fade-up">
+          <div class="hero-badge">
+            <i class="fas fa-globe-europe" aria-hidden="true"></i>
+            <span data-i18n="hero_badge">Global Charity Community Hub</span>
+          </div>
+
+          <h1 id="hero-title" data-i18n="hero_title">
+            Join us in building a fairer, kinder world.
+          </h1>
+
+          <p class="hero-lead" data-i18n="hero_subtitle">
+            We connect donors, volunteers, and communities to deliver education, food,
+            healthcare, and climate action to those who need it most.
+          </p>
+
+          <div class="hero-meta">
+            <div class="hero-meta-item">
+              <i class="fas fa-people-group" aria-hidden="true"></i>
+              <span data-i18n="hero_meta1">150+ community partners
+          </p>
+
+            </div>
+            <div class="hero-meta-item">
+              <i class="fas fa-hand-holding-heart" aria-hidden="true"></i>
+              <span data-i18n="hero_meta2">Over 45,000 lives touched
+          </p>
+
+            </div>
+          </div>
+
+          <div class="hero-buttons">
+            <a href="#programs" class="btn-primary" data-i18n="hero_cta_primary">
+              See how we work <i class="fas fa-arrow-right" aria-hidden="true"></i>
+            </a>
+            <a href="#contact" class="btn-secondary" data-i18n="hero_cta_secondary">
+              Partner with us
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="section" aria-labelledby="about-title">
+      <div class="container">
+        <h2 id="about-title" data-i18n="about_title">About Global Charity Hub</h2>
+        <p class="section-subtitle" data-i18n="about_subtitle">
+          We are a community-powered network working with local partners across the world to deliver long-term, sustainable change – not just short-term fixes.
+        </p>
+
+        <div class="about-grid glass-card" data-aos="fade-up">
+          <div class="about-text">
+            <h3 data-i18n="about_heading">Our mission is simple: people first.</h3>
+            <p data-i18n="about_p1">
+              From supporting children into education to providing clean water and vital healthcare, our work is rooted in dignity, transparency, and collaboration.
+            </p>
+            <p data-i18n="about_p2">
+              We partner with trusted on-the-ground organisations to ensure every donation is used effectively and responsibly, with a clear line of sight from donor to impact.
+            </p>
+          </div>
+
+          <div class="about-image-wrapper" aria-hidden="true">
+            <img
+              src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1200&q=80"
+              alt="Volunteers supporting local communities"
+              class="about-main-img"
+              loading="lazy"
+            />
+            <div class="about-tag">
+              <i class="fas fa-check-circle" aria-hidden="true"></i>
+              <span data-i18n="about_badge">Registered non-profit, audited annually</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROGRAMS (SVG ICON-BASED) -->
+    <section id="programs" class="programs-section" aria-labelledby="programs-title">
+      <div class="container">
+        <h2 id="programs-title" class="section-title">Programs we support</h2>
+        <p class="section-subtitle">
+          Together with local partners, we focus on four core pillars designed to break cycles of
+          poverty and create long-term opportunity.
+        </p>
+
+        <!-- SDGs as animated icon badges -->
+        <div class="sdg-grid">
+          <!-- SDG 4 -->
+          <div class="sdg-card" data-aos="fade-up">
+            <div class="sdg-icon sdg-4">
+              <svg
+                class="svg-pulse"
+                viewBox="0 0 48 48"
+                aria-hidden="true"
+              >
+                <!-- open book -->
+                <rect x="6" y="10" width="16" height="26" rx="2" ry="2" fill="none" stroke="currentColor" stroke-width="2"/>
+                <rect x="26" y="10" width="16" height="26" rx="2" ry="2" fill="none" stroke="currentColor" stroke-width="2"/>
+                <path d="M22 14c-3 0-6 1-8 2" stroke="currentColor" stroke-width="2" fill="none"/>
+                <path d="M26 14c3 0 6 1 8 2" stroke="currentColor" stroke-width="2" fill="none"/>
+              </svg>
+            </div>
+            <span>SDG 4: Quality education</span>
+          </div>
+
+          <!-- SDG 3 -->
+          <div class="sdg-card" data-aos="fade-up" data-aos-delay="80">
+            <div class="sdg-icon sdg-3">
+              <svg
+                class="svg-pulse"
+                viewBox="0 0 48 48"
+                aria-hidden="true"
+              >
+                <!-- heart with cross -->
+                <path d="M24 36s-9-5.6-13-11.2C8.2 22.6 8 20.8 8 19a6 6 0 0 1 10.4-3.8L24 21l5.6-5.8A6 6 0 0 1 40 19c0 1.8-.2 3.6-3 5.8C33 30.4 24 36 24 36z"
+                  fill="none" stroke="currentColor" stroke-width="2"/>
+                <path d="M24 17v8M20 21h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <span>SDG 3: Good health &amp; well-being</span>
+          </div>
+
+          <!-- SDG 2 -->
+          <div class="sdg-card" data-aos="fade-up" data-aos-delay="160">
+            <div class="sdg-icon sdg-2">
+              <svg
+                class="svg-float"
+                viewBox="0 0 48 48"
+                aria-hidden="true"
+              >
+                <!-- bowl and grain -->
+                <path d="M10 24h28c0 7-4 12-14 12S10 31 10 24z"
+                  fill="none" stroke="currentColor" stroke-width="2"/>
+                <path d="M16 20c0-2 2-4 4-4m4 4c0-2 2-4 4-4m4 4c0-2-1-3-2-3"
+                  stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <span>SDG 2: Zero hunger</span>
+          </div>
+
+          <!-- SDG 13 -->
+          <div class="sdg-card" data-aos="fade-up" data-aos-delay="240">
+            <div class="sdg-icon sdg-13">
+              <svg
+                class="svg-float"
+                viewBox="0 0 48 48"
+                aria-hidden="true"
+              >
+                <!-- planet with leaf -->
+                <circle cx="24" cy="24" r="11" fill="none" stroke="currentColor" stroke-width="2"/>
+                <path d="M16 27c2.5 1 5.5 1.5 8 1.5 3.5 0 7-0.7 9-1.5"
+                  stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>
+                <path d="M18 15c1.5-3 4-5 7-5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>
+                <path d="M30 13c2 0 4 1 5 2.5-1.5.5-3 .8-4.5.8-1.2 0-2.4-.2-3.5-.6 0-1.4 1.4-2.7 3-2.7z"
+                  fill="none" stroke="currentColor" stroke-width="2"/>
+              </svg>
+            </div>
+            <span>SDG 13: Climate action</span>
+          </div>
+        </div>
+
+        <!-- Program cards (no images, animated SVG icons) -->
+        <div class="program-card-grid">
+          <!-- Education -->
+          <article class="program-card" data-aos="fade-up">
+            <div class="program-icon-wrap icon-education">
+              <svg
+                class="svg-float"
+                viewBox="0 0 48 48"
+                aria-hidden="true"
+              >
+                <path d="M8 18 24 10l16 8-16 8-16-8z" fill="none" stroke="currentColor" stroke-width="2"/>
+                <path d="M16 22v8c0 2 3.5 4 8 4s8-2 8-4v-8" fill="none" stroke="currentColor" stroke-width="2"/>
+              </svg>
+            </div>
+            <h3>Education support</h3>
+            <p>
+              Scholarships, school meals, and learning materials to ensure every child stays in the
+              classroom and builds a brighter future.
+            </p>
+          </article>
+
+          <!-- Healthcare -->
+          <article class="program-card" data-aos="fade-up" data-aos-delay="80">
+            <div class="program-icon-wrap icon-health">
+              <svg
+                class="svg-pulse"
+                viewBox="0 0 48 48"
+                aria-hidden="true"
+              >
+                <path d="M8 24h7l3-7 5 14 4-11 3 4h10"
+                  fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M10 16a6 6 0 0 1 11-3" stroke="currentColor" stroke-width="2" fill="none"/>
+              </svg>
+            </div>
+            <h3>Healthcare initiatives</h3>
+            <p>
+              Mobile clinics, maternal care, and vaccination drives bringing reliable medical support
+              to remote and underserved communities.
+            </p>
+          </article>
+
+          <!-- Food -->
+          <article class="program-card" data-aos="fade-up" data-aos-delay="160">
+            <div class="program-icon-wrap icon-food">
+              <svg
+                class="svg-float"
+                viewBox="0 0 48 48"
+                aria-hidden="true"
+              >
+                <path d="M10 24h28c0 7-4 12-14 12S10 31 10 24z"
+                  fill="none" stroke="currentColor" stroke-width="2"/>
+                <path d="M18 18c0-2 2-4 4-4m4 4c0-2 2-4 4-4"
+                  stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3>Food and nutrition</h3>
+            <p>
+              Emergency food parcels, hot meals, clean water, and nutrition programs designed to fight
+              hunger and support vulnerable families.
+            </p>
+          </article>
+
+          <!-- Climate / Environment -->
+          <article class="program-card" data-aos="fade-up" data-aos-delay="240">
+            <div class="program-icon-wrap icon-climate">
+              <svg
+                class="svg-float"
+                viewBox="0 0 48 48"
+                aria-hidden="true"
+              >
+                <path d="M24 36c-4 0-7-3-7-7 0-6 7-11 7-17 3 3 7 7 7 12 0 6-3 12-7 12z"
+                  fill="none" stroke="currentColor" stroke-width="2"/>
+                <path d="M20 30c1.5 0 3 .5 4 1.5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3>Environmental projects</h3>
+            <p>
+              Climate resilience training, tree planting, and clean-energy solutions designed to
+              empower communities and protect the environment.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- DONATE SECURELY -->
+<section id="donate" class="section" aria-labelledby="donate-title" style="background:#fff7ef;">
+  <div class="container">
+    <h2 id="donate-title" data-i18n="donate_title">Donate securely</h2>
+    <p class="section-subtitle" data-i18n="donate_subtitle">
+      Every contribution directly supports education, healthcare, food security, and climate resilience.
+    </p>
+
+    <div class="glass-card" data-aos="fade-up" style="max-width:700px; margin:auto;">
+
+      <!-- Progress -->
+      <div class="progress-wrapper" style="margin-bottom:18px;">
+        <div class="progress-bar" style="
+          height:10px;
+          border-radius:999px;
+          background:rgba(243,209,185,0.9);
+          overflow:hidden;
+          margin-bottom:8px;">
+          <div class="progress-fill" style="
+            height:100%;
+            width:78%;
+            background:linear-gradient(90deg, var(--primary-color), var(--accent-color));">
+          </div>
+        </div>
+        <div class="progress-text" style="font-size:0.85rem; color:var(--muted-color);">
+          €24,500 raised of €30,000 goal — funding education, food, and healthcare for families.
+        </div>
+      </div>
+
+      <!-- Amount Buttons -->
+      <div class="amount-grid" style="display:flex; flex-wrap:wrap; gap:10px; margin-bottom:16px;" role="radiogroup">
+        <button class="amount-btn selected" data-amount="10" role="radio" aria-checked="true">€10</button>
+        <button class="amount-btn" data-amount="25" role="radio" aria-checked="false">€25</button>
+        <button class="amount-btn" data-amount="50" role="radio" aria-checked="false">€50</button>
+        <button class="amount-btn" data-amount="100" role="radio" aria-checked="false">€100</button>
+      </div>
+
+      <!-- Custom amount -->
+      <label for="custom-amount" class="sr-only">Custom amount in euros</label>
+      <input
+        type="number"
+        id="custom-amount"
+        class="custom-amount"
+        placeholder="Or enter a custom amount (EUR)"
+        min="1"
+        style="
+          width:100%;
+          border-radius:999px;
+          border:1px solid rgba(215,184,160,0.9);
+          padding:12px 14px;
+          font-size:0.95rem;
+          margin-bottom:14px;
+          background:transparent;
+          color:var(--text-color);
+        "
+      />
+
+      <!-- Donate button -->
+      <button
+        id="donate-button"
+        class="btn-primary"
+        data-i18n="donate_button"
+        style="width:100%; margin-top:8px;"
+      >
+        Continue to secure checkout
+      </button>
+
+      <!-- Secure note -->
+      <div style="font-size:0.85rem; color:var(--muted-color); margin-top:10px; display:flex; gap:6px; align-items:center;">
+        <i class="fas fa-lock"></i>
+        <span>256-bit encryption — your data is always protected.</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+    <!-- TESTIMONIALS -->
+<section id="testimonials" class="section" aria-labelledby="testimonials-title" style="background:#f9f3ef;">
+  <div class="container">
+    <h2 id="testimonials-title" data-i18n="testimonials_title">What our community says</h2>
+    <p class="section-subtitle" data-i18n="testimonials_subtitle">
+      Stories from donors, volunteers, and community partners around the world.
+    </p>
+
+    <div class="testimonial-grid" style="
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+      gap:30px;
+      margin-top:40px;
+    ">
+      
+      <!-- Card 1 -->
+      <div class="glass-card" data-aos="fade-up">
+        <img src="https://randomuser.me/api/portraits/women/68.jpg" 
+             alt="Community testimonial photo" 
+             style="width:70px; height:70px; border-radius:50%; object-fit:cover; margin-bottom:12px;">
+        <h3 style="margin:0 0 8px; font-size:1.1rem;">Anna Rodriguez</h3>
+        <p style="color:var(--muted-color); font-size:0.95rem;">
+          “Supporting Global Charity Hub has been one of the most meaningful decisions I've made.
+          Their transparency and impact reports give me full confidence in every donation.”
+        </p>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="glass-card" data-aos="fade-up" data-aos-delay="120">
+        <img src="https://randomuser.me/api/portraits/men/32.jpg" 
+             alt="Volunteer testimonial photo" 
+             style="width:70px; height:70px; border-radius:50%; object-fit:cover; margin-bottom:12px;">
+        <h3 style="margin:0 0 8px; font-size:1.1rem;">Samuel Chen</h3>
+        <p style="color:var(--muted-color); font-size:0.95rem;">
+          “Volunteering through GCH opened my eyes. They work directly with local partners,
+          making sure help reaches exactly where it’s needed most.”
+        </p>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="glass-card" data-aos="fade-up" data-aos-delay="240">
+        <img src="https://randomuser.me/api/portraits/women/44.jpg" 
+             alt="Partner testimonial photo" 
+             style="width:70px; height:70px; border-radius:50%; object-fit:cover; margin-bottom:12px;">
+        <h3 style="margin:0 0 8px; font-size:1.1rem;">Dr. Aisha Mbali</h3>
+        <p style="color:var(--muted-color); font-size:0.95rem;">
+          “As a healthcare partner in Kenya, the support we receive from Global Charity Hub
+          enables us to reach remote villages with life-saving medical care.”
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section" aria-labelledby="contact-title">
+      <div class="container">
+        <h2 id="contact-title" data-i18n="contact_title">Contact and partnerships</h2>
+        <p class="section-subtitle" data-i18n="contact_subtitle">
+          Want to collaborate, volunteer, or learn more about our work? Reach out — we’d love to hear from you.
+        </p>
+
+        <div class="contact-layout">
+          <div class="glass-card contact-info" data-aos="fade-up">
+            <p>
+              <strong data-i18n="contact_email_label">Email:</strong>
+              <a href="mailto:contact@globalcharity.org">contact@globalcharity.org</a>
+            </p>
+            <p>
+              <strong data-i18n="contact_location_label">Location:</strong>
+              123 Charity Street, Dublin, Ireland
+            </p>
+            <p data-i18n="contact_p">
+              We aim to respond to all enquiries within 2–3 working days. For urgent humanitarian queries, please mention it in your subject line.
+            </p>
+          </div>
+
+          <div class="glass-card contact-form" data-aos="fade-up" data-aos-delay="120">
+            <form id="contact-form" novalidate aria-label="Contact form">
+              <label for="name" class="sr-only">Your name</label>
+              <input id="name" type="text" name="name" placeholder="Your name" required />
+
+              <label for="email" class="sr-only">Your email</label>
+              <input id="email" type="email" name="email" placeholder="Your email" required />
+              <textarea name="message" placeholder="How can we help you?" required></textarea>
+
+              <button
+                type="submit"
+                class="btn-primary"
+                style="width: 100%;"
+                data-i18n="contact_button"
+              >
+                Send message
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MAP -->
+    <section class="section map-section" aria-labelledby="map-title">
+      <div class="container">
+        <h2 id="map-title" data-i18n="map_title">Where we’re based</h2>
+        <p class="section-subtitle" data-i18n="map_subtitle">
+          Our coordination hub is in Dublin, Ireland — but our work and partnerships span communities across the globe.
+        </p>
+        <iframe
+          title="Map showing Global Charity Hub location in Dublin, Ireland"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2381.100136523177!2d-6.26996098417815!3d53.35014027997986!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48670e9d3c9b5c37%3A0x400d6c6d6e3e0b0!2sDublin%2C%20Ireland!5e0!3m2!1sen!2s!4v1696521068300!5m2!1sen!2s"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+    </section>
+  </main>
+
+  <footer role="contentinfo" style="background:#2b1c15; color:#f4e7dc; padding:60px 20px 25px; margin-top:40px;">
+  <div class="container" style="max-width:1200px; margin:0 auto;">
+
+    <!-- TOP AREA: Logo + Tagline -->
+    <div style="display:flex; flex-wrap:wrap; gap:30px; align-items:flex-start; margin-bottom:40px;">
+      <div style="flex:1; min-width:260px;">
+        <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
+          <img src="https://cdn-icons-png.flaticon.com/512/833/833472.png" width="42" height="42" alt="Global Charity Hub logo" style="border-radius:50%;">
+          <h3 style="margin:0; font-size:1.3rem; color:#fff;">Global Charity Hub</h3>
+        </div>
+        <p style="max-width:350px; color:#d8c5b6; margin:0;">
+          A global community supporting education, healthcare, food security, and climate resilience through trusted local partners.
+        </p>
+      </div>
+
+      <!-- NAVIGATION COLUMNS -->
+      <div style="flex:1; min-width:240px;">
+        <h4 style="color:#fff; font-size:1rem; margin-bottom:10px;">Explore</h4>
+        <ul style="list-style:none; padding:0; margin:0; line-height:1.9;">
+          <li><a href="#about" style="color:#e2c9b8;">About us</a></li>
+          <li><a href="#programs" style="color:#e2c9b8;">Programs</a></li>
+          <li><a href="#impact" style="color:#e2c9b8;">Impact</a></li>
+          <li><a href="#donate" style="color:#e2c9b8;">Donate</a></li>
+        </ul>
+      </div>
+
+      <div style="flex:1; min-width:240px;">
+        <h4 style="color:#fff; font-size:1rem; margin-bottom:10px;">Get involved</h4>
+        <ul style="list-style:none; padding:0; margin:0; line-height:1.9;">
+          <li><a href="#volunteer" style="color:#e2c9b8;">Volunteer</a></li>
+          <li><a href="#corporate" style="color:#e2c9b8;">Corporate giving</a></li>
+          <li><a href="#fundraise" style="color:#e2c9b8;">Fundraise</a></li>
+        </ul>
+      </div>
+
+      <!-- EMAIL SUBSCRIBE -->
+      <div style="flex:1; min-width:260px;">
+        <h4 style="color:#fff; font-size:1rem; margin-bottom:10px;">Stay informed</h4>
+        <p style="color:#d8c5b6; font-size:0.9rem; margin-bottom:10px;">
+          Get occasional updates on the projects you’re helping to make possible.
+        </p>
+        <form style="display:flex; gap:8px;">
+          <input 
+            type="email" 
+            placeholder="Your email" 
+            required
+            style="padding:10px 12px; border-radius:8px; border:none; flex:1;"
+          />
+          <button 
+            type="submit" 
+            class="btn-primary" 
+            style="padding:10px 18px; border-radius:8px; cursor:pointer;"
+          >
+            Join
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- FOOTER BOTTOM BAR -->
+    <div class="footer-bottom" style="border-top:1px solid #4d3323; padding-top:12px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; font-size:0.85rem; color:#c6a48c;">
+      <span>© 2025 Global Charity Community Hub. All rights reserved.</span>
+
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-x-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  <!-- SCRIPTS -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    // AOS init
+    AOS.init({
+      duration: 900,
+      once: true
+    });
+
+    // Mobile nav
+    const menuToggle = document.getElementById("menu-toggle");
+    const mainNav = document.getElementById("main-nav");
+    if (menuToggle && mainNav) {
+      menuToggle.addEventListener("click", () => {
+        const open = mainNav.classList.toggle("open");
+        menuToggle.classList.toggle("active");
+        menuToggle.setAttribute("aria-expanded", String(open));
+      });
+    }
+
+    // Dark mode
+    const modeToggle = document.getElementById("mode-toggle");
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const savedTheme = localStorage.getItem("gch-theme");
+    if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
+      document.body.classList.add("dark");
+    }
+    if (modeToggle) {
+      modeToggle.addEventListener("click", () => {
+        document.body.classList.toggle("dark");
+        const theme = document.body.classList.contains("dark") ? "dark" : "light";
+        localStorage.setItem("gch-theme", theme);
+      });
+    }
+
+    // Translations (minimal, extend as needed)
+    const translations = {
+      en: {
+        nav_home: "Home",
+        nav_about: "About",
+        nav_programs: "Programs",
+        nav_contact: "Contact",
+        hero_badge: "Global Charity Community Hub",
+        hero_title: "Join us in building a fairer, kinder world.",
+        hero_subtitle:
+          "We connect donors, volunteers, and communities to deliver education, food, healthcare, and climate action to those who need it most.",
+        hero_meta1: "150+ community partners",
+        hero_meta2: "Over 45,000 lives touched",
+        hero_cta_primary: "See how we work",
+        hero_cta_secondary: "Partner with us",
+        about_title: "About Global Charity Hub",
+        about_subtitle:
+          "We are a community-powered network working with local partners across the world to deliver long-term, sustainable change – not just short-term fixes.",
+        about_heading: "Our mission is simple: people first.",
+        about_p1:
+          "From supporting children into education to providing clean water and vital healthcare, our work is rooted in dignity, transparency, and collaboration.",
+        about_p2:
+          "We partner with trusted on-the-ground organisations to ensure every donation is used effectively and responsibly, with a clear line of sight from donor to impact.",
+        about_badge: "Registered non-profit, audited annually",
+        contact_title: "Contact and partnerships",
+        contact_subtitle:
+          "Want to collaborate, volunteer, or learn more about our work? Reach out — we’d love to hear from you.",
+        contact_email_label: "Email:",
+        contact_location_label: "Location:",
+        contact_p:
+          "We aim to respond to all enquiries within 2–3 working days. For urgent humanitarian queries, please mention it in your subject line.",
+        contact_button: "Send message",
+        map_title: "Where we’re based",
+        map_subtitle:
+          "Our coordination hub is in Dublin, Ireland — but our work and partnerships span communities across the globe."
+      },
+      es: {
+        nav_home: "Inicio",
+        nav_about: "Quiénes somos",
+        nav_programs: "Programas",
+        nav_contact: "Contacto",
+        hero_badge: "Centro comunitario global de caridad",
+        hero_title: "Únete a nosotros para construir un mundo más justo y amable.",
+        hero_subtitle:
+          "Conectamos donantes, voluntarios y comunidades para ofrecer educación, alimentos, atención sanitaria y acción climática a quienes más lo necesitan."
+      },
+      fr: {
+        nav_home: "Accueil",
+        nav_about: "À propos",
+        nav_programs: "Programmes",
+        nav_contact: "Contact",
+        hero_badge: "Centre communautaire caritatif mondial",
+        hero_title: "Rejoignez-nous pour construire un monde plus juste et bienveillant.",
+        hero_subtitle:
+          "Nous relions donateurs, bénévoles et communautés pour apporter éducation, nourriture, soins de santé et action climatique à ceux qui en ont le plus besoin."
+      },
+      de: {
+        nav_home: "Startseite",
+        nav_about: "Über uns",
+        nav_programs: "Programme",
+        nav_contact: "Kontakt",
+        hero_badge: "Globales Charity Hub",
+        hero_title: "Schließen Sie sich uns an, um eine gerechtere, freundlichere Welt aufzubauen.",
+        hero_subtitle:
+          "Wir verbinden Spender, Freiwillige und Gemeinschaften, um Bildung, Nahrung, Gesundheitsversorgung und Klimaschutz dorthin zu bringen, wo sie am dringendsten gebraucht werden."
+      },
+      ar: {
+        nav_home: "الرئيسية",
+        nav_about: "من نحن",
+        nav_programs: "البرامج",
+        nav_contact: "اتصل بنا",
+        hero_badge: "المركز الخيري المجتمعي العالمي",
+        hero_title: "انضم إلينا لبناء عالم أكثر عدلاً ولطفًا.",
+        hero_subtitle:
+          "نربط المتبرعين والمتطوعين والمجتمعات لتقديم التعليم والغذاء والرعاية الصحية والعمل المناخي لمن هم في أمسّ الحاجة."
+      },
+      zh: {
+        nav_home: "首页",
+        nav_about: "关于我们",
+        nav_programs: "项目",
+        nav_contact: "联系",
+        hero_badge: "全球慈善社区中心",
+        hero_title: "与我们一起建设一个更公平、更友善的世界。",
+        hero_subtitle:
+          "我们连接捐赠者、志愿者和社区，为最需要的人提供教育、食物、医疗和气候行动支持。"
+      },
+      hi: {
+        nav_home: "होम",
+        nav_about: "हमारे बारे में",
+        nav_programs: "कार्यक्रम",
+        nav_contact: "संपर्क",
+        hero_badge: "वैश्विक चैरिटी कम्युनिटी हब",
+        hero_title: "हमारे साथ मिलकर एक न्यायपूर्ण और दयालु दुनिया बनाएं।",
+        hero_subtitle:
+          "हम दानदाताओं, स्वयंसेवकों और समुदायों को जोड़ते हैं ताकि शिक्षा, भोजन, स्वास्थ्य सेवा और जलवायु कार्रवाई ज़रूरतमंद लोगों तक पहुँच सके।"
+      }
+    };
+
+    const langDropdown = document.getElementById("language-dropdown");
+
+    function updateLanguage(lang) {
+      const dict = translations[lang] || translations["en"];
+      document.documentElement.lang = lang;
+      document.querySelectorAll("[data-i18n]").forEach((el) => {
+        const key = el.getAttribute("data-i18n");
+        if (dict[key]) {
+          el.innerText = dict[key];
+        } else if (translations["en"][key]) {
+          el.innerText = translations["en"][key];
+        }
+      });
+      if (langDropdown) {
+        langDropdown.value = lang;
+      }
+      localStorage.setItem("gch-lang", lang);
+    }
+
+    if (langDropdown) {
+      langDropdown.addEventListener("change", () => {
+        updateLanguage(langDropdown.value);
+      });
+    }
+
+    const savedLang = localStorage.getItem("gch-lang") || "en";
+    updateLanguage(savedLang);
+
+    // Contact form dummy handler
+    const contactForm = document.getElementById("contact-form");
+    if (contactForm) {
+      contactForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        alert("Thank you for reaching out! We’ll get back to you as soon as we can.");
+        contactForm.reset();
+      });
+    }
+  </script>
+</body>
+</html>
